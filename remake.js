@@ -154,7 +154,6 @@ function playerSet(){
 }
 
 function previewDraw(){
-
     pviewCtx.fillStyle = '#000';
     pviewCtx.fillRect(0, 0, pviewCvs.width, pviewCvs.height);
 
