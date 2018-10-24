@@ -8,6 +8,7 @@ i'm working next on the preview pane and the piece counters.
 
 file structure:
 index.html
+<br>
   -executes:
     remake.js
     pieces.js
