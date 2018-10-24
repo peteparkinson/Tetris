@@ -1,13 +1,15 @@
-const statsCanvas = document.getElementById('statsPane');
-const stats = statsCanvas.getContext('2d');
-const canvas = document.getElementById('centerPane');
-const context = canvas.getContext('2d');
-const rightCanvas = document.getElementById('previewPane');
-const preview = rightCanvas.getContext('2d');
+const statsCvs = document.getElementById('canvas1');
+const statsCtx = statsCvs.getContext('2d');
+const fieldCvs = document.getElementById('canvas2');
+const fieldCtx = fieldCvs.getContext('2d');
+const pviewCvs = document.getElementById('canvas3');
+const pviewCtx = pviewCvs.getContext('2d');
+const countsCvs = document.getElementById('canvas4');
+const countsCtx = countsCvs.getContext('2d');
 
-stats.scale(14, 14);
-context.scale(20, 20);
-preview.scale(20, 20);
+statsCtx.scale(14, 14);
+fieldCtx.scale(20, 20);
+pviewCtx.scale(20, 20);
 
 const arena = arenaInit(12, 20);
 
@@ -17,6 +19,19 @@ const player = {
     score: 0,
 };
 
+const preview = {
+    pos: {x: 0, y: 0},
+    piece: null,
+    score: 0,
+};
+
+var t = 0;
+var J = 0;
+var z = 0;
+var o = 0;
+var s = 0;
+var l = 0;
+var i = 0;
 var level = 0;
 var linesCleared = 0;
 
@@ -42,6 +57,8 @@ function clearLines(){
         }
     }
     level = linesCleared / 10 | 0;
+    statsInit();
+    previewDraw();
 }
 
 function collide(arena, player){
@@ -59,12 +76,12 @@ function collide(arena, player){
     return false;
 }
 
-function drawMatrix(matrix, pos, cont){
+function drawMatrix(matrix, pos, ctx){
     matrix.forEach((row, y) =>{
         row.forEach((value, x) => {
             if(value !== 0){
-                cont.fillStyle = getColor(value ,level);
-                cont.fillRect(x + pos.x, y + pos.y, 1, 1);
+                ctx.fillStyle = getColor(value ,level);
+                ctx.fillRect(x + pos.x, y + pos.y, 1, 1);
             }
         });
     });
@@ -91,10 +108,11 @@ function playerDrop(){
 }
 
 function playerInit(){
-    const choice = 'ILOSTZ';
-    let rand = choice.length * Math.random() | 0;
-    player.piece = newPiece(choice[rand]);
-    //player.piece = newPiece('I');
+    player.piece = preview.piece;
+
+    previewInit();
+    previewDraw();
+
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) -
                    (player.piece[0].length / 2 | 0);
@@ -135,14 +153,30 @@ function playerSet(){
     });
 }
 
-function refresh(){
-    context.fillStyle = '#000';
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    preview.fillStyle = '#000';
-    preview.fillRect(0, 0, canvas.width, canvas.height);
+function previewDraw(){
 
-    drawMatrix(arena, {x: 0, y:0}, context);
-    drawMatrix(player.piece, player.pos, context);
+    pviewCtx.fillStyle = '#000';
+    pviewCtx.fillRect(0, 0, pviewCvs.width, pviewCvs.height);
+
+    //there are piece matrices of 2, 3 and 4 width
+    //the next lines ensure the previewed piece is centered in the pane
+    drawMatrix(preview.piece, 
+        {x: 2.5 - .5 * preview.piece.length, 
+         y: 2.5 - .5 * preview.piece.length}, pviewCtx);
+}
+
+function previewInit(){
+    const choice = 'ILOSTZ';
+    let rand = choice.length * Math.random() | 0;
+    preview.piece = newPiece(choice[rand]);
+}
+
+function refresh(){
+    fieldCtx.fillStyle = '#000';
+    fieldCtx.fillRect(0, 0, fieldCvs.width, fieldCvs.height);
+
+    drawMatrix(arena, {x: 0, y:0}, fieldCtx);
+    drawMatrix(player.piece, player.pos, fieldCtx);
 }
 
 function rotate(matrix, dir){
@@ -179,16 +213,16 @@ function run(time = 0){
 }
 
 function statsInit(){
-    stats.fillStyle = '#000';
-    stats.fillRect(0, 0, canvas.width, canvas.height);
+    statsCtx.fillStyle = '#000';
+    statsCtx.fillRect(0, 0, statsCvs.width, statsCvs.height);
 
-    drawMatrix(newPiece('T'), {x: 2, y: 3}, stats);
-    drawMatrix(newPiece('J'), {x: 2, y: 6}, stats);
-    drawMatrix(newPiece('Z'), {x: 2, y: 9}, stats);
-    drawMatrix(newPiece('O'), {x: 3, y: 13}, stats);
-    drawMatrix(newPiece('S'), {x: 2, y: 15}, stats);
-    drawMatrix(newPiece('L'), {x: 2, y: 18}, stats);
-    drawMatrix(newPiece('I'), {x: 1, y: 20}, stats);
+    drawMatrix(newPiece('T'), {x: 2, y: 3}, statsCtx);
+    drawMatrix(newPiece('J'), {x: 2, y: 6}, statsCtx);
+    drawMatrix(newPiece('Z'), {x: 2, y: 9}, statsCtx);
+    drawMatrix(newPiece('O'), {x: 3, y: 13}, statsCtx);
+    drawMatrix(newPiece('S'), {x: 2, y: 15}, statsCtx);
+    drawMatrix(newPiece('L'), {x: 2, y: 18}, statsCtx);
+    drawMatrix(newPiece('I'), {x: 1, y: 20}, statsCtx);
 
 }
 
@@ -210,7 +244,12 @@ document.addEventListener('keydown', event =>{
     }
 });
 
+countsCtx.fillStyle = "blue";
+countsCtx.font = "12px Arial";
+countsCtx.fillText("test",0,0);
+
 statsInit();
+previewInit();
 playerInit();
 updateScore();
 run();

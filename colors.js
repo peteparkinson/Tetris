@@ -101,46 +101,46 @@ function getColor(letter, level){
     }else if(level % 10 === 6){  //white-orange, gray, dark-orange
         colors = [
             null,
-            '#AAFACA',  //I
-            '#58F898',  //J
-            '#6B88FF',  //L
-            '#AAFACA',  //O
-            '#58F898',  //S
-            '#AAFACA',  //T
-            '#6B88FF',  //Z
+            '#E0E0FF',  //I
+            '#F83800',  //J
+            '#7F7F7F',  //L
+            '#E0E0FF',  //O
+            '#F83800',  //S
+            '#E0E0FF',  //T
+            '#7F7F7F',  //Z
         ];
     }else if(level % 10 === 7){  //white-purple, maroon, purple
         colors = [
             null,
-            '#AAFACA',  //I
-            '#58F898',  //J
-            '#6B88FF',  //L
-            '#AAFACA',  //O
-            '#58F898',  //S
-            '#AAFACA',  //T
-            '#6B88FF',  //Z
+            '#E0FFE0',  //I
+            '#AB0023',  //J
+            '#6B47FF',  //L
+            '#E0FFE0',  //O
+            '#AB0023',  //S
+            '#E0FFE0',  //T
+            '#6B47FF',  //Z
         ];
     }else if(level % 10 === 8){  //white-blue, orange, blue
         colors = [
             null,
-            '#AAFACA',  //I
-            '#58F898',  //J
-            '#6B88FF',  //L
-            '#AAFACA',  //O
-            '#58F898',  //S
-            '#AAFACA',  //T
-            '#6B88FF',  //Z
+            '#FFFF0E',  //I
+            '#0058F8',  //J
+            '#F83800',  //L
+            '#FFFF0E',  //O
+            '#0058F8',  //S
+            '#FFFF0E',  //T
+            '#F83800',  //Z
         ];
     }else if(level % 10 === 9){  //white-orange, light-orange, orange
         colors = [
             null,
-            '#AAFACA',  //I
-            '#58F898',  //J
-            '#6B88FF',  //L
-            '#AAFACA',  //O
-            '#58F898',  //S
-            '#AAFACA',  //T
-            '#6B88FF',  //Z
+            '#E0FFFF',  //I
+            '#F83800',  //J
+            '#FFA347',  //L
+            '#E0FFFF',  //O
+            '#F83800',  //S
+            '#E0FFFF',  //T
+            '#FFA347',  //Z
         ];
     };
     return colors[letter];

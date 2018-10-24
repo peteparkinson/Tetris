@@ -17,7 +17,7 @@ function newPiece(type){
         return [
             [0, 0, 0],
             [3, 3, 3],
-            [3, 0, 0],
+            [0, 0, 3],
         ];
     }else if(type === 'O'){
         return [

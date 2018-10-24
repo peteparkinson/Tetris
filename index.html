@@ -11,28 +11,44 @@
         </div>
     <form id='form1' style="position:relative">
         
+        <!-- Statistics window -->
         <div id='d1' style="position:absolute; top:60px; left:0px; z-index:1">
             
             <canvas 
-                id='statsPane' 
+                id='canvas1' 
                 width='200' 
                 height='340'
                 style="border:7px solid #808080;">=
             </canvas>
         </div>
-        <div id='d2' style="position:absolute; top:0px; left:200px; z-index:2">
+
+        <!-- playable field -->
+        <div id='d2' style="position:absolute; top:0px; left:208px; z-index:2">
             <canvas 
-                id='centerPane' 
+                id='canvas2' 
                 width='240' 
                 height='400'
                 style="border:7px solid #808080;">=
             </canvas>
         </div>
-        <div id='d3' style="position:absolute; top:75px; left:440px; z-index:3">
+
+        <!-- preview window -->
+        <div id='d3' style="position:absolute; top:75px; left:456px; z-index:3">
             <canvas
-                id='previewPane' 
+                id='canvas3' 
                 width='100' 
                 height='100'
+                style="border:7px solid #808080;">=
+            </canvas>
+        </div>
+
+        <!-- piece counts -->
+        <div id='d1' style="position:absolute; top:60px; left:0px; z-index:4">
+            
+            <canvas 
+                id='canvas4' 
+                width='200' 
+                height='340'
                 style="border:7px solid #808080;">=
             </canvas>
         </div>
