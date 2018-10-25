@@ -3,16 +3,65 @@
     <title>test</title>
 </head>
 <body>
-    <div id="score"></div>
+    <!-- Word "score" -->
+    <div style="position: absolute;
+                z-index: 2;
+                top: 0px;
+                left: 480px;
+                width:100px;
+                height:20px">
+        <h2> 
+            <font face="helvetica"; color="#000000">
+                SCORE
+            </font> 
+        </h2>
+    </div>
 
-    <div style="position: absolute; z-index: 2;
-            top: 90px; left: 40px; width:100px; height:20px">
-        <h2> <font face="helvetica"; color="#FFFFFF">STATISTICS</font> </h2>
+    <!-- score itself -->
+    <div id="score"
+        style="position: absolute; z-index: 2;
+               top: 45px;
+               left: 480px;
+               width:100px;
+               height:20px">
+            <p> test </p>
         </div>
+
+    <!-- Word "statistics" -->
+    <div style="position: absolute; z-index: 2;
+            top: 70px;
+            left: 40px;
+            width:100px;
+            height:20px">
+        <h2>
+            <font face="helvetica"; color="#FFFFFF">
+                STATISTICS
+            </font>
+        </h2>
+    </div>
+
+    <!-- Word "next" -->
+    <div style="position: absolute; z-index: 2;
+                top: 70px;
+                left: 490px;
+                width: 100px;
+                height: 20px">
+        <h2>
+            <font face="helvetica"; color="#FFFFFF">
+                NEXT
+            </font>
+        </h2>
+
+</div>
+    <!-- canvases -->
     <form id='form1' style="position:relative">
         
         <!-- Statistics window -->
-        <div id='d1' style="position:absolute; top:60px; left:0px; z-index:1">
+        <div id='d1'
+             style="position:absolute;
+                    top:60px;
+                    left:0px;
+                    z-index:1">
             
             <canvas 
                 id='canvas1' 
@@ -23,7 +72,11 @@
         </div>
 
         <!-- playable field -->
-        <div id='d2' style="position:absolute; top:0px; left:208px; z-index:2">
+        <div id='d2'
+             style="position:absolute;
+                    top:0px;
+                    left:208px;
+                    z-index:1">
             <canvas 
                 id='canvas2' 
                 width='240' 
@@ -33,22 +86,15 @@
         </div>
 
         <!-- preview window -->
-        <div id='d3' style="position:absolute; top:75px; left:456px; z-index:3">
+        <div id='d3'
+             style="position:absolute;
+             top:75px;
+             left:456px;
+             z-index:1">
             <canvas
                 id='canvas3' 
                 width='100' 
                 height='100'
-                style="border:7px solid #808080;">=
-            </canvas>
-        </div>
-
-        <!-- piece counts -->
-        <div id='d1' style="position:absolute; top:60px; left:0px; z-index:4">
-            
-            <canvas 
-                id='canvas4' 
-                width='200' 
-                height='340'
                 style="border:7px solid #808080;">=
             </canvas>
         </div>

@@ -4,8 +4,10 @@ const fieldCvs = document.getElementById('canvas2');
 const fieldCtx = fieldCvs.getContext('2d');
 const pviewCvs = document.getElementById('canvas3');
 const pviewCtx = pviewCvs.getContext('2d');
-const countsCvs = document.getElementById('canvas4');
-const countsCtx = countsCvs.getContext('2d');
+
+const playerScore = document.getElementById('score')
+//playerScore.style.fontSize = "30";
+playerScore.style.font = "bold 25px helvetica,serif";;
 
 statsCtx.scale(14, 14);
 fieldCtx.scale(20, 20);
@@ -16,13 +18,11 @@ const arena = arenaInit(12, 20);
 const player = {
     pos: {x: 0, y: 0},
     piece: null,
-    score: 0,
 };
 
 const preview = {
     pos: {x: 0, y: 0},
     piece: null,
-    score: 0,
 };
 
 var t = 0;
@@ -34,6 +34,7 @@ var l = 0;
 var i = 0;
 var level = 0;
 var linesCleared = 0;
+var score = 0;
 
 function arenaInit(w, h){
     const matrix = [];
@@ -52,7 +53,7 @@ function clearLines(){
             ++y;
 
             linesCleared += rowCount;
-            player.score += rowCount * 10;
+            score += rowCount * 10;
             rowCount *= 2;
         }
     }
@@ -91,7 +92,7 @@ function lose(){
     linesCleared = 0;
     level = 0;
     arena.forEach(row => row.fill(0));
-    player.score = 0;
+    score = 0;
     updateScore();
 }
 
@@ -226,7 +227,7 @@ function statsInit(){
 }
 
 function updateScore(){
-    document.getElementById('score').innerText = player.score;
+    playerScore.innerText = score;
 }
 
 document.addEventListener('keydown', event =>{
@@ -242,10 +243,6 @@ document.addEventListener('keydown', event =>{
         playerRotate(1);
     }
 });
-
-countsCtx.fillStyle = "blue";
-countsCtx.font = "12px Arial";
-countsCtx.fillText("test",0,0);
 
 statsInit();
 previewInit();
