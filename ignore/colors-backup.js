@@ -42,8 +42,6 @@ function getColor(letter, level){
             '#0057F6',  //S
             '#E0E0FF',  //T
             '#3EBEFF',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     }else if(level % 10 === 1){  //white-green, light-green, dark-green
         colors = [
@@ -55,8 +53,6 @@ function getColor(letter, level){
             '#00A800',  //S
             '#E0FFE0',  //T
             '#80D010',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     }else if(level % 10 === 2){  //white, light-pink, pink
         colors = [
@@ -68,8 +64,6 @@ function getColor(letter, level){
             '#D800CD',  //S
             '#E0FFFF',  //T
             '#F878F8',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     }else if(level % 10 === 3){  //white-blue, green-teal, dark-blue-teal
         colors = [
@@ -81,8 +75,6 @@ function getColor(letter, level){
             '#0058F8',  //S
             '#FFFFE0',  //T
             '#5BDB57',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     }else if(level % 10 === 4){  //white-pink, teal, dark-pink
         colors = [
@@ -94,8 +86,6 @@ function getColor(letter, level){
             '#E7005B',  //S
             '#F17EAB',  //T
             '#58F898',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     }else if(level % 10 === 5){  //white-green, lavender, green-teal
         colors = [
@@ -107,8 +97,6 @@ function getColor(letter, level){
             '#58F898',  //S
             '#AAFACA',  //T
             '#6B88FF',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     }else if(level % 10 === 6){  //white-orange, gray, dark-orange
         colors = [
@@ -120,8 +108,6 @@ function getColor(letter, level){
             '#F83800',  //S
             '#E0E0FF',  //T
             '#7F7F7F',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     }else if(level % 10 === 7){  //white-purple, maroon, purple
         colors = [
@@ -133,8 +119,6 @@ function getColor(letter, level){
             '#AB0023',  //S
             '#E0FFE0',  //T
             '#6B47FF',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     }else if(level % 10 === 8){  //white-blue, orange, blue
         colors = [
@@ -146,8 +130,6 @@ function getColor(letter, level){
             '#0058F8',  //S
             '#E0E0FF',  //T
             '#F83800',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     }else if(level % 10 === 9){  //white-orange, light-orange, orange
         colors = [
@@ -159,8 +141,6 @@ function getColor(letter, level){
             '#F83800',  //S
             '#E0FFFF',  //T
             '#FFA347',  //Z
-            '#000000',  //black
-            '#FFFFFF',  //white
         ];
     };
     return colors[letter];

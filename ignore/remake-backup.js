@@ -37,11 +37,11 @@ const iCount = document.getElementById('iStat');
 iCount.style.font = "bold 25px helvetica,serif";
 iCount.style.color = "#FFFFFF";
 
-//statsCtx.scale(14, 14);
-fieldCtx.scale(2, 2);
-//pviewCtx.scale(20, 20);
+statsCtx.scale(14, 14);
+fieldCtx.scale(20, 20);
+pviewCtx.scale(20, 20);
 
-const arena = arenaInit(120, 200);
+const arena = arenaInit(12, 20);
 
 const player = {
     pos: {x: 0, y: 0},
@@ -123,9 +123,9 @@ function initializeGame(){
 }
 
 function playerDrop(){
-    player.pos.y += 10;
+    player.pos.y++;
     if(collide(arena, player)){
-        player.pos.y -= 10;
+        player.pos.y--;
         playerSet();
         playerInit();
         clearLines();
@@ -198,8 +198,8 @@ function previewInit(){
     const choice = 'ILOSTZ';
     let rand = choice.length * Math.random() | 0;
     holder = choice[rand];
-    //preview.piece = newPiece(holder);
-    preview.piece = newPiece('I');
+    preview.piece = newPiece(holder);
+    //preview.piece = newPiece('T');
 }
 
 function refresh(){
@@ -316,9 +316,9 @@ function updateStats(letter){
 
 document.addEventListener('keydown', event =>{
     if(event.keyCode === 37){
-        playerMove(-10);
+        playerMove(-1);
     }else if(event.keyCode === 39){
-        playerMove(10);
+        playerMove(1);
     }else if(event.keyCode === 40){
         playerDrop();
     }else if(event.keyCode === 81){
