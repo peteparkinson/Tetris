@@ -1,23 +1,3 @@
-
-Conversation opened. 1 unread message.
-
-Skip to content
-Using Gmail with screen readers
-
-1 of 4
-(no subject)
-Inbox
-x
-
-Parkinson, Pete
-Attachments
-3:26 PM (4 hours ago)
-to me
-
- 
-
-7 Attachments
-
 function newPiece(type){
     //IJLOSTZ
     if(type === 'I'){
@@ -251,5 +231,3 @@ function newPiece(type){
         ];
     }
 }
-pieces.txt
-Displaying pieces.txt.
