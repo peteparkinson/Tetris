@@ -6,7 +6,6 @@ const pviewCvs = document.getElementById('canvas3');
 const pviewCtx = pviewCvs.getContext('2d');
 
 const playerScore = document.getElementById('score')
-//playerScore.style.fontSize = "30";
 playerScore.style.font = "bold 25px helvetica,serif";;
 
 statsCtx.scale(14, 14);
