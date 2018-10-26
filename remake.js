@@ -67,17 +67,18 @@ function arenaInit(w, h){
 
 function clearLines(){
 
-    /****
-     * Scoring
-     * 1 line:
-     *      (level + 1) * 40
-     * 2 lines:
-     *      (level + 1) * 100
-     * 3 lines:
-     *      (level + 1) * 300
-     * 4 lines:
-     *      (level + 1) * 1200
-     */
+    /**************************
+    *  Scoring
+    * 
+    *  1 line:
+    *       (level + 1) * 40
+    *  2 lines:
+    *       (level + 1) * 100
+    *  3 lines:
+    *       (level + 1) * 300
+    *  4 lines:
+    *       (level + 1) * 1200
+    */
 
 
     let count = 0;
@@ -90,7 +91,6 @@ function clearLines(){
         }
     }
     count /= 10;
-    console.log(count);
     if(count === 1){
         score += (level + 1) * 40;
     }
@@ -188,14 +188,26 @@ function playerRotate(dir){
     const pos = player.pos.x;
     let offset = 1;
     rotate(player.piece, dir);
+    player.orientation += dir;
     while(collide(arena, player)){
         player.pos.x += offset;
         offset = -(offset +(offset > 0 ? 1: -1));
         if(offset > player.piece[0].length){
             rotate(player.piece, -dir);
+            player.orientation -= dir;
             player.pos.x = pos;
             return;
         }
+    }
+    /*
+        0
+     3     1
+        2
+    */
+    if(player.orientation === 4){
+        player.orientation = 0;
+    }else if(player.orientation === -1){
+        player.orientation = 3;
     }
 }
 
@@ -237,6 +249,15 @@ function refresh(){
 }
 
 function rotate(matrix, dir){
+    //wipes reflections
+    for(let y = matrix.length - 1; y > 0; y--){
+        for(let x = matrix[0].length - 1; x > 0; x--){
+            if(matrix[y][x] === 5){
+                matrix[y][x] = matrix[y][x + 1];
+            }
+        }
+    }
+
     for(let  y = 0; y < matrix.length; y++){
         for(let x = 0; x < y; x++){
             [
@@ -252,6 +273,24 @@ function rotate(matrix, dir){
         matrix.forEach(row => row.reverse());
     }else{
         matrix.reverse();
+    }
+
+    //sets new reflections (AWESOME)
+    let coords = [
+        [1, 1],
+        [2, 2],
+        [2, 3],
+        [3, 2],
+    ];
+
+    for(let i = 0; i < matrix.length; i+= 10){
+        for(let j = 0; j < matrix[0].length; j+= 10){
+            for(let y = 0; y < coords.length; y++){
+                if(matrix[ (coords[y][0]) + i][ (coords[y][1]) + j] !== 0){
+                    matrix[ (coords[y][0]) + i][ (coords[y][1]) + j] = 5;
+                }
+            }
+        }
     }
 }
 
@@ -299,16 +338,6 @@ function statsDraw(){
     drawMatrix(newPiece('S'), {x: 20, y: 150}, statsCtx);
     drawMatrix(newPiece('L'), {x: 20, y: 180}, statsCtx);
     drawMatrix(newPiece('I'), {x: 10, y: 200}, statsCtx);
-
-    /*
-    drawMatrix(newPiece('T'), {x: 2, y: 3}, statsCtx);
-    drawMatrix(newPiece('J'), {x: 2, y: 6}, statsCtx);
-    drawMatrix(newPiece('Z'), {x: 2, y: 9}, statsCtx);
-    drawMatrix(newPiece('O'), {x: 3, y: 13}, statsCtx);
-    drawMatrix(newPiece('S'), {x: 2, y: 15}, statsCtx);
-    drawMatrix(newPiece('L'), {x: 2, y: 18}, statsCtx);
-    drawMatrix(newPiece('I'), {x: 1, y: 20}, statsCtx);
-    */
 }
 
 function updateScores(){
