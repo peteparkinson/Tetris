@@ -8,35 +8,48 @@ const pviewCtx = pviewCvs.getContext('2d');
 
 //score, level, line counts
 const currentLevel = document.getElementById('lvl');
+const lineCount    = document.getElementById('lines');
+const playerScore  = document.getElementById('score');
 currentLevel.style.font = "bold 25px helvetica,serif";
-const lineCount = document.getElementById('lines');
-lineCount.style.font = "bold 25px helvetica,serif";
-const playerScore = document.getElementById('score');
-playerScore.style.font = "bold 25px helvetica,serif";
+lineCount.style.font    = "bold 25px helvetica,serif";
+playerScore.style.font  = "bold 25px helvetica,serif";
 
-//piece counts 
+//elements for piece counts
+//there's got to be a better way to do this
 const tCount = document.getElementById('tStat');
-tCount.style.font = "bold 25px helvetica,serif";
-tCount.style.color = "#FFFFFF";
 const jCount = document.getElementById('jStat');
-jCount.style.font = "bold 25px helvetica,serif";
-jCount.style.color = "#FFFFFF";
 const zCount = document.getElementById('zStat');
-zCount.style.font = "bold 25px helvetica,serif";
-zCount.style.color = "#FFFFFF";
 const oCount = document.getElementById('oStat');
-oCount.style.font = "bold 25px helvetica,serif";
-oCount.style.color = "#FFFFFF";
 const sCount = document.getElementById('sStat');
-sCount.style.font = "bold 25px helvetica,serif";
-sCount.style.color = "#FFFFFF";
 const lCount = document.getElementById('lStat');
-lCount.style.font = "bold 25px helvetica,serif";
-lCount.style.color = "#FFFFFF";
 const iCount = document.getElementById('iStat');
+
+tCount.style.font = "bold 25px helvetica,serif";
+jCount.style.font = "bold 25px helvetica,serif";
+zCount.style.font = "bold 25px helvetica,serif";
+oCount.style.font = "bold 25px helvetica,serif";
+sCount.style.font = "bold 25px helvetica,serif";
+lCount.style.font = "bold 25px helvetica,serif";
 iCount.style.font = "bold 25px helvetica,serif";
+
+tCount.style.color = "#FFFFFF";
+jCount.style.color = "#FFFFFF";
+zCount.style.color = "#FFFFFF";
+oCount.style.color = "#FFFFFF";
+sCount.style.color = "#FFFFFF";
+lCount.style.color = "#FFFFFF";
 iCount.style.color = "#FFFFFF";
 
+//piece counts themselves
+var t = 0;
+var j = 0;
+var z = 0;
+var o = 0;
+var s = 0;
+var l = 0;
+var i = 0;
+
+//10 pixes per square
 statsCtx.scale(1.4, 1.4);
 fieldCtx.scale(2, 2);
 pviewCtx.scale(2, 2);
@@ -69,47 +82,40 @@ function clearLines(){
 
     /**************************
     *  Scoring
+    *  (level + 1) * x  * line count
     * 
-    *  1 line:
-    *       (level + 1) * 40
-    *  2 lines:
-    *       (level + 1) * 100
-    *  3 lines:
-    *       (level + 1) * 300
-    *  4 lines:
-    *       (level + 1) * 1200
+    *  1 line:       x = 40
+    *  2 lines:      x = 50
+    *  3 lines:      x = 100
+    *  4 lines:      x = 300
     */
 
-
+    const tier = [0, 40, 50, 100, 300];
     let count = 0;
+
     for(let y = arena.length -1; y > 0; y--){
         if(!arena[y].includes(0)){
+            //zeros any full row, shifts to top of the arena
             const row = arena.splice(y, 1)[0].fill(0);
             arena.unshift(row);
             count++;
-            ++y;
+            y++;
         }
     }
+
+    //calculate and update scores
     count /= 10;
-    if(count === 1){
-        score += (level + 1) * 40;
-    }
-    if(count === 2){
-        score += (level + 1) * 100;
-    }
-    if(count === 3){
-        score += (level + 1) * 300;
-    }
-    if(count === 4){
-        score += (level + 1) * 1200;
-    }
+    score += (level + 1) * tier[count] * count;
     linesCleared += count;
     level = linesCleared / 10 | 0;
+    updateScores();
+
+    //in case of level change, redraw preview and stats pane
     previewDraw();
     statsDraw();
-    updateScores();
 }
 
+//returns if arena and player share coordinates containing non-zero values
 function collide(arena, player){
     const p = player.piece;
     const o = player.pos;
@@ -125,6 +131,7 @@ function collide(arena, player){
     return false;
 }
 
+//used to draw piece and arena.
 function drawMatrix(matrix, pos, ctx){
     matrix.forEach((row, y) =>{
         row.forEach((value, x) => {
@@ -136,14 +143,17 @@ function drawMatrix(matrix, pos, ctx){
     });
 }
 
+//zero and redraw all screen elements
 function initializeGame(){
     linesCleared = 0;
     level = 0;
-    arena.forEach(row => row.fill(0));
     score = 0;
     updateScores();
+
     statsClear();
     statsDraw();
+
+    arena.forEach(row => row.fill(0));
     previewInit();
     playerInit();
 }
@@ -155,14 +165,15 @@ function playerDrop(){
         playerSet();
         playerInit();
         clearLines();
+
+        //for debug
         updateScores();
     }
     elapsed = 0;
 }
 
-var holder = '';
-
 function playerInit(){
+    //grab piece from preview pane, make new preview piece
     player.piece = preview.piece;
 
     updateStats(holder);
@@ -172,6 +183,7 @@ function playerInit(){
     player.pos.y = 0;
     player.pos.x = 50;
 
+    //loser
     if(collide(arena, player)){
         initializeGame();
     }
@@ -188,29 +200,21 @@ function playerRotate(dir){
     const pos = player.pos.x;
     let offset = 1;
     rotate(player.piece, dir);
-    player.orientation += dir;
+    //prevents rotating outside of arena
     while(collide(arena, player)){
         player.pos.x += offset;
+        //bumps piece into available space
         offset = -(offset +(offset > 0 ? 1: -1));
+        //if impossible to rotate, return
         if(offset > player.piece[0].length){
             rotate(player.piece, -dir);
-            player.orientation -= dir;
             player.pos.x = pos;
             return;
         }
     }
-    /*
-        0
-     3     1
-        2
-    */
-    if(player.orientation === 4){
-        player.orientation = 0;
-    }else if(player.orientation === -1){
-        player.orientation = 3;
-    }
 }
 
+//draws current piece into the arena upon landing
 function playerSet(){
     player.piece.forEach((row, y) => {
         row.forEach((value, x) => {
@@ -225,12 +229,14 @@ function previewDraw(){
     pviewCtx.fillStyle = '#000';
     pviewCtx.fillRect(0, 0, pviewCvs.width, pviewCvs.height);
 
-    //there are piece matrices of 2, 3 and 4 width
-    //the next lines ensure the previewed piece is centered in the pane
+    //matricies of varying width get centered in preview pane
     drawMatrix(preview.piece, 
         {x: 25 - 5 * preview.piece.length / 10, 
          y: 25 - 5 * preview.piece.length / 10}, pviewCtx);
 }
+
+//place holder to sync playerinit and stats
+var holder = '';
 
 function previewInit(){
     const choice = 'IJLOSTZ';
@@ -238,14 +244,6 @@ function previewInit(){
     holder = choice[rand];
     preview.piece = newPiece(holder);
     //preview.piece = newPiece('I');
-}
-
-function refresh(){
-    fieldCtx.fillStyle = '#000';
-    fieldCtx.fillRect(0, 0, fieldCvs.width, fieldCvs.height);
-
-    drawMatrix(arena, {x: 0, y:0}, fieldCtx);
-    drawMatrix(player.piece, player.pos, fieldCtx);
 }
 
 function rotate(matrix, dir){
@@ -257,7 +255,7 @@ function rotate(matrix, dir){
             }
         }
     }
-
+    //rotate
     for(let  y = 0; y < matrix.length; y++){
         for(let x = 0; x < y; x++){
             [
@@ -294,6 +292,7 @@ function rotate(matrix, dir){
     }
 }
 
+//timer variables
 let ref = 0;
 let elapsed = 0;
 let oneSec = 1000;
@@ -301,10 +300,17 @@ let oneSec = 1000;
 function run(time = 0){
     elapsed += time - ref;
     ref = time;
+    //higher level = higher speed, no faster after 13
     if(elapsed > oneSec - (level > 12 ? 930 : level * 75)){
         playerDrop();
     }
-    refresh();
+    
+    fieldCtx.fillStyle = '#000';
+    fieldCtx.fillRect(0, 0, fieldCvs.width, fieldCvs.height);
+
+    drawMatrix(arena, {x: 0, y:0}, fieldCtx);
+    drawMatrix(player.piece, player.pos, fieldCtx);
+
     requestAnimationFrame(run);
 }
 
@@ -327,6 +333,7 @@ function statsClear(){
     iCount.innerText = 0;
 }
 
+//stats pane layout
 function statsDraw(){
     statsCtx.fillStyle = '#000';
     statsCtx.fillRect(0, 0, statsCvs.width, statsCvs.height);
@@ -334,10 +341,10 @@ function statsDraw(){
     drawMatrix(newPiece('T'), {x: 20, y: 30}, statsCtx);
     drawMatrix(newPiece('J'), {x: 20, y: 60}, statsCtx);
     drawMatrix(newPiece('Z'), {x: 20, y: 90}, statsCtx);
-    drawMatrix(newPiece('O'), {x: 30, y: 130}, statsCtx);
+    drawMatrix(newPiece('O'), {x: 25, y: 130}, statsCtx);
     drawMatrix(newPiece('S'), {x: 20, y: 150}, statsCtx);
     drawMatrix(newPiece('L'), {x: 20, y: 180}, statsCtx);
-    drawMatrix(newPiece('I'), {x: 10, y: 200}, statsCtx);
+    drawMatrix(newPiece('I'), {x: 15, y: 200}, statsCtx);
 }
 
 function updateScores(){
@@ -345,14 +352,6 @@ function updateScores(){
     lineCount.innerText = linesCleared;
     currentLevel.innerText = level;
 }
-
-var t = 0;
-var j = 0;
-var z = 0;
-var o = 0;
-var s = 0;
-var l = 0;
-var i = 0;
 
 function updateStats(letter){
     if(letter === 'T'){
