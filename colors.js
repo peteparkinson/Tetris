@@ -9,115 +9,104 @@
  * 2.   L, Z
  * 3.   J, S
  * 
- * with an increasing level of boldness in that order
+ * with an increasing level of saturation in that order
  * so 'I' always has the least saturated color,
  * 'J' always has the most saturated color
- * 
- * these colors are listed beside each condition statement
- * 
- * original retro colors added as future easter egg  
  */
-function getColor(letter, level){
+
+function getColor(index, level){
     let colors = [];
 
-    //0,
-    //1: offwhite
-    //2: light
-    //3: dark
-    //4: black
-    //5: white
-
-
-    if(level % 10 === 0){ //white-blue, light-blue, dark-blue
+    if(level % 10 === 0){ 
         colors = [
             null,
-            '#E0E0FF',  //off-white
-            '#3EBEFF',  //light
-            '#0057F6',  //dark
+            '#E0E0FF',  //white-blue
+            '#3EBEFF',  //light blue
+            '#0057F6',  //dark blue
             '#000000',  //black
             '#FFFFFF',  //white
         ];
-    }else if(level % 10 === 1){  //white-green, light-green, dark-green
+    }else if(level % 10 === 1){
         colors = [
             null,
-            '#E0FFE0',  //off-white
-            '#80D010',  //light
-            '#00A800',  //dark
-            '#000000',  //black
-            '#FFFFFF',  //white
+            '#E0FFE0',  //white-green
+            '#80D010',  //light-green
+            '#00A800',  //dark- green
+            '#000000',
+            '#FFFFFF',
         ];
-    }else if(level % 10 === 2){  //white, light-pink, pink
+    }else if(level % 10 === 2){
         colors = [
             null,
-            '#E0FFFF',  //off-white
-            '#F878F8',  //light
-            '#D800CD',  //dark
-            '#000000',  //black
-            '#FFFFFF',  //white
+            '#E0FFFF',  //white
+            '#F878F8',  //light-pink
+            '#D800CD',  //pink
+            '#000000',
+            '#FFFFFF',
         ];
-    }else if(level % 10 === 3){  //white-blue, green-teal, dark-blue-teal
+    }else if(level % 10 === 3){
         colors = [
             null,
-            '#FFFFE0',  //off-white
-            '#5BDB57',  //light
-            '#0058F8',  //dark
-            '#000000',  //black
-            '#FFFFFF',  //white
+            '#FFFFE0',  //white-blue
+            '#5BDB57',  //green-teal
+            '#0058F8',  //dark-blue-teal
+            '#000000',
+            '#FFFFFF',
         ];
-    }else if(level % 10 === 4){  //white-pink, teal, dark-pink
+    }else if(level % 10 === 4){
         colors = [
             null,
-            '#F17EAB',  //off-white
-            '#58F898',  //light
-            '#E7005B',  //dark
-            '#000000',  //black
-            '#FFFFFF',  //white
+            '#E0FFFF',  //white-pink
+            '#58F898',  //teal
+            '#E7005B',  //dark-pink
+            '#000000',
+            '#FFFFFF',
         ];
-    }else if(level % 10 === 5){  //white-green, lavender, green-teal
+    }else if(level % 10 === 5){
         colors = [
             null,
-            '#AAFACA',  //off-white
-            '#6B88FF',  //light
-            '#58F898',  //dark
-            '#000000',  //black
-            '#FFFFFF',  //white
+            '#AAFACA',  //white-green
+            '#6B88FF',  //lavender
+            '#58F898',  //green-teal
+            '#000000',
+            '#FFFFFF',
         ];
-    }else if(level % 10 === 6){  //white-orange, gray, dark-orange
+    }else if(level % 10 === 6){
         colors = [
             null,
-            '#E0E0FF',  //off-white
-            '#7F7F7F',  //light
-            '#F83800',  //dark
-            '#000000',  //black
-            '#FFFFFF',  //white
+            '#E0E0FF',  //light-orange
+            '#7F7F7F',  //gray
+            '#F83800',  //dark-orange
+            '#000000',
+            '#FFFFFF',
         ];
-    }else if(level % 10 === 7){  //white-purple, maroon, purple
+    }else if(level % 10 === 7){
         colors = [
             null,
-            '#E0FFE0',  //off-white
-            '#6B47FF',  //light
-            '#AB0023',  //dark
-            '#000000',  //black
-            '#FFFFFF',  //white
+            '#E0FFE0',  //white-purple
+            '#6B47FF',  //maroon
+            '#AB0023',  //purple
+            '#000000',
+            '#FFFFFF',
         ];
-    }else if(level % 10 === 8){  //white-blue, orange, blue
+    }else if(level % 10 === 8){
         colors = [
             null,
-            '#E0E0FF',  //off-white
-            '#F83800',  //light
-            '#0058F8',  //dark
-            '#000000',  //black
-            '#FFFFFF',  //white
+            '#E0E0FF',  //white-blue
+            '#F83800',  //orange
+            '#0058F8',  //blue
+            '#000000',
+            '#FFFFFF',
         ];
-    }else if(level % 10 === 9){  //white-orange, light-orange, orange
+    }else if(level % 10 === 9){
         colors = [
             null,
-            '#E0FFFF',  //off-white
-            '#FFA347',  //light
-            '#F83800',  //dark
-            '#000000',  //black
-            '#FFFFFF',  //white
+            '#E0FFFF',  //white-orange
+            '#FFA347',  //light-orange
+            '#F83800',  //orange
+            '#000000',
+            '#FFFFFF',
         ];
     };
-    return colors[letter];
+    return colors[index];
 }
