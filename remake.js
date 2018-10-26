@@ -37,9 +37,9 @@ const iCount = document.getElementById('iStat');
 iCount.style.font = "bold 25px helvetica,serif";
 iCount.style.color = "#FFFFFF";
 
-//statsCtx.scale(14, 14);
+statsCtx.scale(1.4, 1.4);
 fieldCtx.scale(2, 2);
-//pviewCtx.scale(20, 20);
+pviewCtx.scale(2, 2);
 
 const arena = arenaInit(120, 200);
 
@@ -66,18 +66,44 @@ function arenaInit(w, h){
 }
 
 function clearLines(){
-    let rowCount = 1;
+
+    /****
+     * Scoring
+     * 1 line:
+     *      (level + 1) * 40
+     * 2 lines:
+     *      (level + 1) * 100
+     * 3 lines:
+     *      (level + 1) * 300
+     * 4 lines:
+     *      (level + 1) * 1200
+     */
+
+
+    let count = 0;
     for(let y = arena.length -1; y > 0; y--){
         if(!arena[y].includes(0)){
             const row = arena.splice(y, 1)[0].fill(0);
             arena.unshift(row);
+            count++;
             ++y;
-
-            linesCleared++;
-            score += rowCount * 10;
-            rowCount *= 2;
         }
     }
+    count /= 10;
+    console.log(count);
+    if(count === 1){
+        score += (level + 1) * 40;
+    }
+    if(count === 2){
+        score += (level + 1) * 100;
+    }
+    if(count === 3){
+        score += (level + 1) * 300;
+    }
+    if(count === 4){
+        score += (level + 1) * 1200;
+    }
+    linesCleared += count;
     level = linesCleared / 10 | 0;
     previewDraw();
     statsDraw();
@@ -144,8 +170,8 @@ function playerInit(){
     previewDraw();
 
     player.pos.y = 0;
-    player.pos.x = (arena[0].length / 2 | 0) -
-                   (player.piece[0].length / 2 | 0);
+    player.pos.x = 50;
+
     if(collide(arena, player)){
         initializeGame();
     }
@@ -190,16 +216,16 @@ function previewDraw(){
     //there are piece matrices of 2, 3 and 4 width
     //the next lines ensure the previewed piece is centered in the pane
     drawMatrix(preview.piece, 
-        {x: 2.5 - .5 * preview.piece.length, 
-         y: 2.5 - .5 * preview.piece.length}, pviewCtx);
+        {x: 25 - 5 * preview.piece.length / 10, 
+         y: 25 - 5 * preview.piece.length / 10}, pviewCtx);
 }
 
 function previewInit(){
-    const choice = 'ILOSTZ';
+    const choice = 'IJLOSTZ';
     let rand = choice.length * Math.random() | 0;
     holder = choice[rand];
-    //preview.piece = newPiece(holder);
-    preview.piece = newPiece('I');
+    preview.piece = newPiece(holder);
+    //preview.piece = newPiece('I');
 }
 
 function refresh(){
@@ -266,6 +292,15 @@ function statsDraw(){
     statsCtx.fillStyle = '#000';
     statsCtx.fillRect(0, 0, statsCvs.width, statsCvs.height);
  
+    drawMatrix(newPiece('T'), {x: 20, y: 30}, statsCtx);
+    drawMatrix(newPiece('J'), {x: 20, y: 60}, statsCtx);
+    drawMatrix(newPiece('Z'), {x: 20, y: 90}, statsCtx);
+    drawMatrix(newPiece('O'), {x: 30, y: 130}, statsCtx);
+    drawMatrix(newPiece('S'), {x: 20, y: 150}, statsCtx);
+    drawMatrix(newPiece('L'), {x: 20, y: 180}, statsCtx);
+    drawMatrix(newPiece('I'), {x: 10, y: 200}, statsCtx);
+
+    /*
     drawMatrix(newPiece('T'), {x: 2, y: 3}, statsCtx);
     drawMatrix(newPiece('J'), {x: 2, y: 6}, statsCtx);
     drawMatrix(newPiece('Z'), {x: 2, y: 9}, statsCtx);
@@ -273,6 +308,7 @@ function statsDraw(){
     drawMatrix(newPiece('S'), {x: 2, y: 15}, statsCtx);
     drawMatrix(newPiece('L'), {x: 2, y: 18}, statsCtx);
     drawMatrix(newPiece('I'), {x: 1, y: 20}, statsCtx);
+    */
 }
 
 function updateScores(){
