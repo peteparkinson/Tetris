@@ -5,14 +5,25 @@ const fieldCvs = document.getElementById('canvas2');
 const fieldCtx = fieldCvs.getContext('2d');
 const pviewCvs = document.getElementById('canvas3');
 const pviewCtx = pviewCvs.getContext('2d');
+const linesCvs = document.getElementById('canvas4');
+const linesCtx = linesCvs.getContext('2d');
+const scoreCvs = document.getElementById('canvas5');
+const scoreCtx = scoreCvs.getContext('2d');
+const levelCvs = document.getElementById('canvas6');
+const levelCtx = levelCvs.getContext('2d');
 
 //score, level, line counts
 const currentLevel = document.getElementById('lvl');
 const lineCount    = document.getElementById('lines');
 const playerScore  = document.getElementById('score');
+
 currentLevel.style.font = "bold 25px helvetica,serif";
-lineCount.style.font    = "bold 25px helvetica,serif";
-playerScore.style.font  = "bold 25px helvetica,serif";
+lineCount.style.font    = "bold 20px helvetica,serif";
+playerScore.style.font  = "bold 20px helvetica,serif";
+
+currentLevel.style.color = "#FFFFFF";
+lineCount.style.color    = "#FFFFFF";
+playerScore.style.color  = "#FFFFFF";
 
 //elements for piece counts
 //there's got to be a better way to do this
@@ -53,6 +64,16 @@ var i = 0;
 statsCtx.scale(1.4, 1.4);
 fieldCtx.scale(2, 2);
 pviewCtx.scale(2, 2);
+
+//draw unused background canvases
+statsCtx.fillStyle = '#000';
+statsCtx.fillRect(0, 0, statsCvs.width, statsCvs.height);
+linesCtx.fillStyle = '#000';
+linesCtx.fillRect(0, 0, linesCvs.width, linesCvs.height);
+scoreCtx.fillStyle = '#000';
+scoreCtx.fillRect(0, 0, scoreCvs.width, scoreCvs.height);
+levelCtx.fillStyle = '#000';
+levelCtx.fillRect(0, 0, levelCvs.width, levelCvs.height);
 
 const arena = arenaInit(120, 200);
 
@@ -335,8 +356,6 @@ function statsClear(){
 
 //stats pane layout
 function statsDraw(){
-    statsCtx.fillStyle = '#000';
-    statsCtx.fillRect(0, 0, statsCvs.width, statsCvs.height);
  
     drawMatrix(newPiece('T'), {x: 20, y: 30}, statsCtx);
     drawMatrix(newPiece('J'), {x: 20, y: 60}, statsCtx);

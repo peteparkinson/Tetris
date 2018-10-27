@@ -1,29 +1,36 @@
 <html>
 <head>
     <title>Tetris</title>
+        <style>
+            body {
+                background-image: url("background.jpg");
+                background-repeat: no-repeat;
+                background-size: 600px 450px;
+            }
+        </style>
 </head>
 <body>
 
     <!-- Word "lines" -->
     <div style="position: absolute;
                 z-index: 2;
-                top: 0px;
-                left: 20px;
-                width:100px;
-                height:20px">
-        <h2> 
+                top:    10px;
+                left:   55px;
+                width:  100px;
+                height: 20px">
+        <h3> 
             <font face="helvetica";
-                  color="#000000";>
+                  color="#FFFFFF";>
                 LINES -
             </font> 
-        </h2>
+        </h3>
     </div>
 
     <!-- number of lines cleared -->
     <div id="lines"
         style="position: absolute; z-index: 2;
-               top: 19px;
-               left: 120px;
+               top: 28px;
+               left: 125px;
                width:100px;
                height:20px">
         </div>
@@ -31,13 +38,13 @@
     <!-- Word "level" -->
     <div style="position: absolute;
                 z-index: 2;
-                top: 200px;
-                left: 480px;
+                top: 265px;
+                left: 482px;
                 width:100px;
                 height:20px">
         <h2> 
             <font face="helvetica";
-                  color="#000000";>
+                  color="#FFFFFF";>
                 LEVEL
             </font> 
         </h2>
@@ -46,15 +53,15 @@
     <!-- level itself -->
     <div id="lvl"
         style="position: absolute; z-index: 2;
-               top: 245px;
-               left: 480px;
+               top: 310px;
+               left: 512px;
                width:100px;
                height:20px">
     </div>
 
     <!-- Word "next" -->
         <div style="position: absolute; z-index: 2;
-                    top: 70px;
+                    top: 135px;
                     left: 490px;
                     width: 100px;
                     height: 20px">
@@ -68,21 +75,21 @@
     <!-- Word "score" -->
     <div style="position: absolute;
                 z-index: 2;
-                top: 0px;
+                top: 52px;
                 left: 480px;
                 width:100px;
                 height:20px">
-        <h2> 
-            <font face="helvetica"; color="#000000">
+        <h3> 
+            <font face="helvetica"; color="#FFFFFF">
                 SCORE
             </font> 
-        </h2>
+        </h3>
     </div>
 
     <!-- score itself -->
     <div id="score"
         style="position: absolute; z-index: 2;
-               top: 45px;
+               top: 95px;
                left: 480px;
                width:100px;
                height:20px">
@@ -173,7 +180,7 @@
                 id='canvas1' 
                 width='200' 
                 height='340'
-                style="border:7px solid #808080;">=
+                style="border: 5px solid #808080; border-style: inset">=
             </canvas>
         </div>
 
@@ -187,21 +194,63 @@
                 id='canvas2' 
                 width='240' 
                 height='400'
-                style="border:7px solid #808080;">=
+                style="border: 5px solid #808080; border-style: inset">=
             </canvas>
         </div>
 
         <!-- preview window -->
         <div id='d3'
              style="position:absolute;
-             top:75px;
-             left:456px;
+             top:140px;
+             left:458px;
              z-index:1">
             <canvas
                 id='canvas3' 
                 width='100' 
                 height='100'
-                style="border:7px solid #808080;">=
+                style="border: 5px solid #808080; border-style: inset">=
+            </canvas>
+        </div>
+        
+        <!-- lines background -->
+        <div id='d4'
+             style="position:absolute;
+                    top:12px;
+                    left:37px;
+                    z-index:1">
+            <canvas 
+                id='canvas4' 
+                width='150' 
+                height='30'
+                style="border: 5px solid #808080; border-style: inset">=
+            </canvas>
+        </div>
+
+        <!-- score background -->
+        <div id='d5'
+             style="position:absolute;
+                    top:55px;
+                    left:458px;
+                    z-index:1">
+            <canvas 
+                id='canvas5' 
+                width='110' 
+                height='60'
+                style="border: 5px solid #808080; border-style: inset">=
+            </canvas>
+        </div>
+
+        <!-- level background -->
+        <div id='d6'
+             style="position:absolute;
+                    top:270px;
+                    left:458px;
+                    z-index:1">
+            <canvas 
+                id='canvas6' 
+                width='100' 
+                height='55'
+                style="border: 5px solid #808080; border-style: inset">=
             </canvas>
         </div>
       </form>
