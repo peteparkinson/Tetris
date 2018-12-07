@@ -1,6 +1,6 @@
 # Tetris
 
-![image](https://user-images.githubusercontent.com/43157092/49668108-123dbc00-fa55-11e8-84c0-c58475a8cc68.png)
+![image](https://user-images.githubusercontent.com/43157092/49668248-76f91680-fa55-11e8-85a9-fcf663fcb544.png)
 
 
 want to stay true to original NES version.
