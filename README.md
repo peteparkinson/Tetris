@@ -1,6 +1,7 @@
 # Tetris
 
-WIP
+![image](https://user-images.githubusercontent.com/43157092/49668108-123dbc00-fa55-11e8-84c0-c58475a8cc68.png)
+
 
 want to stay true to original NES version.
 as of initial file dump to github, the game works with levels, speed and colors.
