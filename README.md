@@ -30,3 +30,6 @@ ignore folder<br>
    for future expansion<br><br>
    
 the first 4 files are needed to run the game.
+
+![image](https://user-images.githubusercontent.com/43157092/49668352-baec1b80-fa55-11e8-89a0-861f134662ec.png)
+
