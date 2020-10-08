@@ -1,10 +1,12 @@
 # Welcome to Tetris
 
-
 This is a Tetris remake written in JavaScript using functional programming.
 The intention was to stay as true as possible to the original NES version of the game.
 Below you'll find a list of features written into the game, and instruction on how to run it.
 Thanks for visiting!
+
+
+![image](https://user-images.githubusercontent.com/43157092/49668248-76f91680-fa55-11e8-85a9-fcf663fcb544.png)
 
 # Features
 
@@ -13,9 +15,6 @@ Thanks for visiting!
 
 Now featuring your favorite original color schemes!
 
-
-### Preview Pane
-![image](https://user-images.githubusercontent.com/43157092/49668248-76f91680-fa55-11e8-85a9-fcf663fcb544.png)
 
 ### Level Difficulty
 Each subsequent 10 lines cleared will level up the game by 1.  Each level increases the rate at which the pieces fall.
@@ -33,7 +32,9 @@ You can simply [clone this repository](https://docs.github.com/en/free-pro-team@
 
 Here's the URL for the repository: https://github.com/peteparkinson/Tetris.git
 
+ ![tetris](https://user-images.githubusercontent.com/43157092/95485981-6f13a180-0960-11eb-8cf6-88b8e6d57994.jpg)
 <br><br>
+
 # Technical Aspects
 
 ### File Structure
