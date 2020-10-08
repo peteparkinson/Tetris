@@ -1,6 +1,5 @@
 # Welcome to Tetris
 
-![image](https://user-images.githubusercontent.com/43157092/49668248-76f91680-fa55-11e8-85a9-fcf663fcb544.png)
 
 This is a Tetris remake written in JavaScript using functional programming.
 The intention was to stay as true as possible to the original NES version of the game.
@@ -14,7 +13,30 @@ Thanks for visiting!
 
 Now featuring your favorite original color schemes!
 
-file structure:<br>
+
+### Preview Pane
+![image](https://user-images.githubusercontent.com/43157092/49668248-76f91680-fa55-11e8-85a9-fcf663fcb544.png)
+
+### Level Difficulty
+Each subsequent 10 lines cleared will level up the game by 1.  Each level increases the rate at which the pieces fall.
+Each level The formula that determines rate of falling is as follows:
+
+```javascript
+    //higher level = higher speed, no faster after 13
+    if(elapsed > oneSec - (level > 12 ? 930 : level * 75)){
+        playerDrop();
+    }
+```
+<br><br>
+# How to play
+You can simply [clone this repository](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository "Clone Repository Tutorial") and double click "index.html".
+
+Here's the URL for the repository: https://github.com/peteparkinson/Tetris.git
+
+<br><br>
+# Technical Aspects
+
+### File Structure
 index.html<br>
   -executes:<br>
     remake.js<br>
@@ -37,6 +59,9 @@ ignore folder<br>
    for future expansion<br><br>
    
 the first 4 files are needed to run the game.
+
+
+### Context
 
 ![image](https://user-images.githubusercontent.com/43157092/49668352-baec1b80-fa55-11e8-89a0-861f134662ec.png)
 
