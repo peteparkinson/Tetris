@@ -1,7 +1,7 @@
 # Welcome to Tetris
 
 This is a Tetris remake written in JavaScript using functional programming.
-The intention was to stay as true as possible to the original NES version of the game.
+The intention was to stay as true as practical to the original NES version of the game.
 Below you'll find instructions for how to play the game, a list of features written into the game and some technical explanations of those features.
 Thanks for visiting!
 
