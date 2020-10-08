@@ -117,5 +117,11 @@ the first 4 files are needed to run the game.
 
 ### Context
 
-![image](https://user-images.githubusercontent.com/43157092/49668352-baec1b80-fa55-11e8-89a0-861f134662ec.png)
+
+### Reflections
+![reflection](https://user-images.githubusercontent.com/43157092/95494217-8d32cf00-096b-11eb-86ba-0ecad252b66d.jpg)
+
+
+
+This is interesting enough to warrant an entry here.  
 
