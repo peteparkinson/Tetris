@@ -1,11 +1,18 @@
-# Tetris
+# Welcome to Tetris
 
 ![image](https://user-images.githubusercontent.com/43157092/49668248-76f91680-fa55-11e8-85a9-fcf663fcb544.png)
+![image](https://user-images.githubusercontent.com/43157092/95469861-19ce9480-094e-11eb-9715-c2b99762f9e7.png)
 
+This is a Tetris remake written in JavaScript using functional programming.
+The intention was to stay as true as possible to the original NES version of the game.
+Below you'll find a list of features written into the game, and instruction on how to run it.
+Thanks for visiting!
 
-want to stay true to original NES version.
-as of initial file dump to github, the game works with levels, speed and colors.
-i'm working next on the preview pane and the piece counters.
+# Features
+
+### Colors
+
+Now featuring your favorite original color schemes!
 
 file structure:<br>
 index.html<br>
