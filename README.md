@@ -32,7 +32,7 @@ Each time the players piece drops, the "clearLines" function is called.  This fu
 
 (level + 1) * x  * line count
     
-This is [the scoring system found in the original NES version of Tetris](https://tetris.wiki/Scoring "Tetris").
+This is [the scoring system found in the original NES version of Tetris](https://tetris.wiki/Scoring "Tetris Wiki - Scoring").
 
 | Level | Points for 1 Line  | Points for 2 Lines   | Points for 3 Lines   | Points for 4 Lines   |       
 | ------|:------------------:| --------------------:|---------------------:|---------------------:|
