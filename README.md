@@ -85,6 +85,9 @@ You can simply [clone this repository](https://docs.github.com/en/free-pro-team@
 
 Here's the URL for the repository: https://github.com/peteparkinson/Tetris.git
 
+### Controls
+#### Q, W, arrows!
+
  ![tetris](https://user-images.githubusercontent.com/43157092/95485981-6f13a180-0960-11eb-8cf6-88b8e6d57994.jpg)
 <br><br>
 
